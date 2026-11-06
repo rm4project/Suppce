@@ -1,2 +1,0 @@
-# Suppce
-support computer
