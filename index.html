@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="UTF-8">
+<title>תצוגת תמיכה מרחוק</title>
+<style>
+  :root { color-scheme: dark; }
+  body { font-family: system-ui, sans-serif; margin:0; background:#111317; color:#fff; }
+  .layout { display:flex; max-width:1100px; margin:0 auto; }
+  .sidebar { width:260px; padding:16px; border-left:1px solid #22262e; box-sizing:border-box; }
+  .main { flex:1; padding:16px; box-sizing:border-box; }
+  h2, h3 { margin:0 0 10px; }
+  h3 { font-size:14px; color:#9aa0ab; }
+  textarea { width:100%; height:70px; background:#1b1f26; color:#9fe3a0; border:1px solid #2a2f38; border-radius:6px; font-size:11px; padding:8px; box-sizing:border-box; }
+  button { margin-top:8px; padding:9px 14px; border:none; border-radius:7px; background:#2d6cdf; color:#fff; cursor:pointer; font-size:13px; }
+  label { font-size:12px; color:#9aa0ab; display:block; margin-top:12px; }
+  video { width:100%; border-radius:8px; margin-top:16px; background:#000; cursor:none; }
+  #status { margin-top:8px; font-size:12px; color:#9aa0ab; }
+  input[type=text] { width:100%; padding:8px; border-radius:6px; border:1px solid #2a2f38; background:#1b1f26; color:#fff; box-sizing:border-box; }
+  .ab-entry { background:#1b1f26; border-radius:8px; padding:8px; margin-top:8px; font-size:12px; }
+  .ab-entry .name { font-weight:bold; }
+  .ab-group { color:#6ea8ff; font-size:11px; margin-top:12px; text-transform:uppercase; }
+  .ab-current { border:1px solid #2ea043; }
+  .files { margin-top:16px; border-top:1px solid #2a2f38; padding-top:12px; }
+  #fileProgress { font-size:12px; color:#9aa0ab; margin-top:6px; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar">
+    <h3>ספר כתובות</h3>
+    <input type="text" id="abSearch" placeholder="חיפוש לפי שם/קבוצה/הערה...">
+    <div id="abList"></div>
+  </div>
+
+  <div class="main">
+    <h2>תצוגת תמיכה מרחוק</h2>
+
+    <label>שם מזהה שלך (יוצג למורה):</label>
+    <input type="text" id="supporterLabel" placeholder="לדוגמה: דני, תמיכת IT" value="תמיכת IT">
+
+    <label>הדבק כאן את קוד החיבור שקיבלת מהמורה:</label>
+    <textarea id="offerCode" placeholder="הדבק כאן..."></textarea>
+    <button id="connectBtn">התחבר</button>
+
+    <label>קוד התשובה (שלח בחזרה למורה):</label>
+    <textarea id="answerCode" readonly></textarea>
+
+    <div id="status">סטטוס: ממתין לקוד</div>
+    <video id="remoteVideo" autoplay playsinline></video>
+
+    <div id="currentMachineCard" style="display:none" class="ab-entry ab-current">
+      <div class="name" id="curName"></div>
+      <label>כינוי:</label><input type="text" id="curNickname">
+      <label>קבוצה:</label><input type="text" id="curGroup" placeholder="לדוגמה: קומה 2, יסודי">
+      <label>הערות:</label><input type="text" id="curNotes">
+      <button id="saveAbBtn">שמור בספר הכתובות</button>
+    </div>
+
+    <div class="files">
+      <input type="file" id="filePicker" style="display:none">
+      <button id="sendFileBtn" disabled>שלח קובץ למורה</button>
+      <div id="fileProgress"></div>
+    </div>
+  </div>
+</div>
+
+<script src="identity.js"></script>
+<script src="filetransfer.js"></script>
+<script src="addressbook.js"></script>
+<script src="viewer.js"></script>
+</body>
+</html>
